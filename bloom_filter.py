@@ -21,7 +21,7 @@ class BloomFilter:
             number_of_items: The number of items to be stored.
             false_positive_probability: A false positive probability parameter.
 
-        Notes: We need to add dependency of false_positive_probability parameter.
+        Notes: We need to add the dependency of the false_positive_probability parameter.
         """
         self.size = self._get_size(number_of_items)
 
@@ -32,7 +32,7 @@ class BloomFilter:
         self.filter = bytearray([0 for _ in range(self.size)])
 
     def _get_number_of_hash_functions(self, size: int, item_count: int) -> int:
-        """The method calculate the number of hash functions.
+        """The method calculates the number of hash functions.
 
         Notes: At this moment, it simply return 1.
         """
