@@ -29,7 +29,7 @@ class BloomFilter:
             self.size, number_of_items
         )
 
-        self.filter = bytearray([0 for _ in range(self.size)])
+        self.filter = bytearray(self.size)
 
     def _get_number_of_hash_functions(self, size: int, item_count: int) -> int:
         """The method calculates the number of hash functions.
