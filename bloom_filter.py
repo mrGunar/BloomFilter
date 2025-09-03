@@ -14,7 +14,7 @@ class BloomFilter:
     def __init__(
         self,
         number_of_items: int,
-        false_positive_probability: float = 0.0001,
+        false_positive_probability: float = 0.001,
     ) -> None:
         """
         Args:
@@ -52,8 +52,9 @@ class BloomFilter:
             We don't use several hash functions. Also, we use a simple built-in method to calculate
             hash.
         """
-        index = self.hash(value)
-        self.filter[index] = 1
+        for _ in range(self.hash_func_count):
+            index = self.hash(value)
+            self.filter[index] = 1
 
     def contains(self, value: tp.Hashable) -> bool:
         """The method checks if a value exists or not."""
@@ -62,7 +63,7 @@ class BloomFilter:
     def hash(self, value: tp.Hashable) -> int:
         """Primitive hash method.
 
-        Notes: If needed if can replace print with logging.
+        Notes: If needed, we can replace print with logging.
         """
         try:
             return hash(value) % self.size
@@ -72,5 +73,8 @@ class BloomFilter:
             raise
 
     def __contains__(self, value: tp.Hashable) -> bool:
-        index = self.hash(value)
-        return bool(self.filter[index])
+        for _ in range(self.hash_func_count):
+            index = self.hash(value)
+            if not self.filter[index]:
+                return False
+        return True
