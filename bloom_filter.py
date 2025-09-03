@@ -34,7 +34,7 @@ class BloomFilter:
     def _get_number_of_hash_functions(self, size: int, item_count: int) -> int:
         """The method calculates the number of hash functions.
 
-        Notes: At this moment, it simply return 1.
+        Notes: At this moment, it simply returns 1.
         """
         return 1
 
